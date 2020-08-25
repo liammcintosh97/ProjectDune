@@ -4,14 +4,12 @@ using UnityEngine;
 
 public enum SpeedType { Walk,Run }
 
+[System.Serializable]
 public class CharacterSpeed
 {
-  [SerializeField]
   public float walk;
-  [SerializeField]
   public float run;
 
-  [SerializeField]
   public float Current
   {
     get { return current; }
@@ -19,11 +17,6 @@ public class CharacterSpeed
 
   private float current;
 
-  public CharacterSpeed(float _walk,float _run) {
-    this.walk = _walk;
-    this.run = _run;
-    this.current = walk;
-  }
 
   public void Set(SpeedType type)
   {

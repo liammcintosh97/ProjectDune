@@ -10,6 +10,7 @@ public class Projectile : Item
 {
   public ProjectileType projectileType;
   public Rigidbody2D rigidbody2D;
+  public Damage damage = new Damage();
 
   [Header("Visual Effects")]
 
@@ -28,7 +29,7 @@ public class Projectile : Item
     projectileLight.gameObject.SetActive(false);
   }
 
-  public void Shoot(Vector3 up, Actor _shooter){
+  public void Shoot(Vector3 up,Actor _shooter){
 
     shooter = _shooter;
 
@@ -43,12 +44,24 @@ public class Projectile : Item
 
   public void OnCollisionEnter2D(Collision2D collision)
   {
-    Actor colliededActor
+    Actor hitActor = collision.gameObject.GetComponent<Actor>();
 
-    if(collision.gameObject != )
+    if (hitActor != shooter){
+      //The projectile hit an other actor
 
-    Debug.Log(" Projectile: " + ID + " Hit " + collision.gameObject.name);
-    Destroy(gameObject);
+      Character hitCharacter = hitActor.Character;
+
+
+      Destroy(gameObject);
+      
+      //hitActor.health
+  
+    }
+    else {
+      Debug.Log(" Projectile: " + ID + " Hit " + collision.gameObject.name);
+      Destroy(gameObject);
+    }
+    
   }
 
 }

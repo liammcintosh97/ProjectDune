@@ -8,6 +8,7 @@ public abstract class Equipable : Item, IUsages
 {
   public EquipableType equipableType;
   public abstract void Use(object o);
+  public Resistances resistances;
 
   protected Usage UUse;
 

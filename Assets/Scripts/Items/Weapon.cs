@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class Weapon : Equipable
 {
+  public float holsterTime;
+
   public bool Holstered {
     get { return _holstered; }
     set { SetHolstered(value); }

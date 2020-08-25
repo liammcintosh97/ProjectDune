@@ -66,7 +66,7 @@ public class Actor : MonoBehaviour
 
   #region Public Methods
   public void UseInHand() {
-    if(inHand)inHand.Use(null);
+    if(inHand)inHand.Use(this);
   }
 
   public void SetInhand(Equipable e) { inHand = e; }
@@ -78,7 +78,7 @@ public class Actor : MonoBehaviour
 
       FireArm fa = (FireArm)inHand;
 
-      Magazine mag = _equipmentManager.GetMagazineFromReserve(fa.projectileType);
+      Magazine mag = _equipmentManager.ammoReserve.GetMagazine(fa.projectileType);
 
       if (mag){
         fa.Reload(new object[] { mag, transform.position });
@@ -127,7 +127,7 @@ public class Actor : MonoBehaviour
     }
     else{
     
-      bool stored = _equipmentManager.StoreItem(item);
+      bool stored = _equipmentManager.storage.Store(item);
       if (!stored){
         item.PickUp(true);
         equipment.OpenWindow();
@@ -150,7 +150,18 @@ public class Actor : MonoBehaviour
 
   #region Private Method
   private bool HolsterCheck(KeyCode k) {
-    return input.KeyHold(k) && (input.HeldKey == k) && (input.KeyHoldTime == _character.characterStats.holsterTime);
+
+    if (inHand && inHand.GetType() == typeof(Weapon)) {
+
+      Weapon weapon = (Weapon)inHand;
+      float holsterTime = weapon.holsterTime;
+
+      return input.KeyHold(k) && (input.HeldKey == k) && (input.KeyHoldTime == holsterTime);
+
+    } else return false;
+
+
+    
   }
 
   private void LookAtMouse() {

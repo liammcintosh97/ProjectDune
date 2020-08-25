@@ -122,6 +122,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UISize: {x: 1, y: 1}
   equipableType: 12
+  resistances:
+    Piercing: 5
+    Blunt: 5
+    Ballistic: 5
+    Explosive: 5
+    Slashing: 5
+    Fire: 5
+    Acid: 5
+    Electric: 5
   storageWindowPrefab: {fileID: 2311498165513947, guid: dc133f76a5bb96644b3de35643be1184,
     type: 3}
   storageSize: {x: 10, y: 10}

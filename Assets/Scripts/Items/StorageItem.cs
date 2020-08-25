@@ -46,6 +46,17 @@ public class StorageItem : Equipable
 
   }
 
+  public static bool IsStorageItem(Equipable equipable){
+    try{
+      StorageItem si = (StorageItem)equipable;
+      return true;
+    }
+    catch (System.Exception e){
+      Debug.Log("The sloted item" + equipable.name + " is not a Storage Item");
+      return false;
+    }
+  }
+
   #endregion
 
 }

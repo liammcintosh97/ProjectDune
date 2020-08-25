@@ -58,13 +58,25 @@ public class FireArm : Weapon, IUsages
 
   public override void Use(object o) {
 
+    Actor shooter = null;
+
+    try{
+      shooter = (Actor)o;
+    }
+    catch (Exception e) {
+      Debug.LogError("The shooter is null");
+      return;
+    }
+
+    if (shooter == null) return;
+
     if (loadedMagazine)
     {
-      if (chamberedProjectile) chamberedProjectile.Shoot(transform.up);
+      if (chamberedProjectile) chamberedProjectile.Shoot(transform.up, shooter);
       else {
         Chamber(loadedMagazine.Cycle(this));
         if (chamberedProjectile){
-          chamberedProjectile.Shoot(transform.up);
+          chamberedProjectile.Shoot(transform.up, shooter);
           FireEffects();
         }    
       }

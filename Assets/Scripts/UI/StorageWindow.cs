@@ -116,7 +116,7 @@ public class StorageWindow : Window
       linkedItem.transform.SetParent(_storageItem.transform);
 
       if (linkedItem.GetType() == typeof(Magazine)) {
-        gameManager.Actor.EquipmentManager.AddMagazineToReserve((Magazine)linkedItem);
+        gameManager.Actor.EquipmentManager.ammoReserve.Add((Magazine)linkedItem);
       }
 
       Debug.Log("item was sloted in storage");

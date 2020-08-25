@@ -33,7 +33,7 @@ public class Mover : MonoBehaviour
 
   private void MoveCharacter(Vector2 input)
   {
-    input *= character.speed.Current;
+    input *= character.characterSpeed.Current;
 
     Vector3 newVelocity = (transform.up * input);
     rigidbody2D.velocity = new Vector2(input.x, input.y);
@@ -45,12 +45,12 @@ public class Mover : MonoBehaviour
 
     if(!userInput.KeyHold(KeyCode.LeftShift)) character.endurance.Heal(25);
 
-    if (userInput.KeyPress(KeyCode.LeftShift)) character.speed.Set(SpeedType.Run);
+    if (userInput.KeyPress(KeyCode.LeftShift)) character.characterSpeed.Set(SpeedType.Run);
 
     if (userInput.KeyHold(KeyCode.LeftShift) && character.endurance.Current > 0)
     {
       character.endurance.Drain(35);
     }
-    else if (userInput.KeyHold(KeyCode.LeftShift)) character.speed.Set(SpeedType.Walk);
+    else if (userInput.KeyHold(KeyCode.LeftShift)) character.characterSpeed.Set(SpeedType.Walk);
   }
 }

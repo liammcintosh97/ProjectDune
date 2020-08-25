@@ -10,25 +10,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-  [SerializeField]
-  public CharacterStats characterStats;
-  public CharacterSpeed speed;
-  public Endurance endurance;
-
-  public Transform Transform { get { return _transform; } }
-
-  private Transform _transform;
-
-  // Start is called before the first frame update
-  void Start()
-  {
-    InitCharacterStats();
-  }
-
-  private void InitCharacterStats() {
-    speed = new CharacterSpeed(characterStats.walkSpeed, characterStats.runSpeed);
-    endurance = new Endurance(characterStats.maxEndurance);
-  }
-
+  public CharacterSpeed characterSpeed =  new CharacterSpeed();
+  public Endurance endurance = new Endurance();
+  public Health health = new Health();
+  public Resistances resistances = new Resistances();
 
 }

@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Endurance
-{
-  [SerializeField]
+[System.Serializable]
+public class Endurance{
+
   public float max;
  
-  [SerializeField]
   public float Current {
     get { return Mathf.Clamp(current, 0, max); }
     set
@@ -19,9 +18,8 @@ public class Endurance
 
   private float current;
 
-  public Endurance(float _max) {
-    this.max = _max;
-    this.Current = _max;
+  public Endurance() {
+    Current = max;
   }
 
   public float Drain(float amount) {
