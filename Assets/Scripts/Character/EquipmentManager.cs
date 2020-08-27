@@ -51,6 +51,8 @@ public class EquipmentManager : MonoBehaviour
     EquipableType equipableType = ep.equipableType;
 
     resistanceManager.AddResistances(ep.resistances);
+    actor.Character.resistanceManager.AddResistances(ep.resistances);
+
     SetEquipmentParent(ep, equipableType, Equipable.IsHand(equipableType));
 
     if (StorageItem.IsStorageItem(ep)) storage.AddStorageItem((StorageItem)ep);
@@ -58,6 +60,7 @@ public class EquipmentManager : MonoBehaviour
 
   public void Unequip(Equipable ep) {
     resistanceManager.SubtractResistances(ep.resistances);
+    actor.Character.resistanceManager.SubtractResistances(ep.resistances);
 
     if (StorageItem.IsStorageItem(ep)) storage.RemoveStorageItem((StorageItem)ep);
   }
@@ -66,7 +69,6 @@ public class EquipmentManager : MonoBehaviour
     Transform parent = InterprateName(type);
     return parent.GetChild(0).GetComponent<Item>();
   }
-
 
   #endregion
 

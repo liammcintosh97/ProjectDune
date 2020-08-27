@@ -6,5 +6,6 @@ using UnityEngine;
 public class ProjectileType : ScriptableObject
 {
   public float force;
+  public float mass;
 
 }

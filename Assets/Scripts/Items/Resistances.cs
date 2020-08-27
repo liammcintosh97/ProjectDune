@@ -17,10 +17,9 @@ public class Resistances
   private static float minResistance;
   private static float maxResistance;
 
+  #region Public Static Methods
 
-#region Public Static Methods
-
-public static Resistances operator +(Resistances a, Resistances b){
+  public static Resistances operator +(Resistances a, Resistances b){
     Resistances sum = new Resistances();
 
     sum.Piercing = a.Piercing + b.Piercing;
@@ -54,7 +53,18 @@ public static Resistances operator +(Resistances a, Resistances b){
 
     return sum;
   }
-  
+
+  public void Randomize() {
+    Piercing = Random.Range(minResistance, maxResistance);
+    Blunt = Random.Range(minResistance, maxResistance);
+    Ballistic = Random.Range(minResistance, maxResistance);
+    Explosive = Random.Range(minResistance, maxResistance);
+    Slashing = Random.Range(minResistance, maxResistance);
+    Fire = Random.Range(minResistance, maxResistance);
+    Acid = Random.Range(minResistance, maxResistance);
+    Electric = Random.Range(minResistance, maxResistance);
+}
+
   #endregion
 
   #region Private Static Methods

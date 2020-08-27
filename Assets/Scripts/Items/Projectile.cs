@@ -50,11 +50,9 @@ public class Projectile : Item
       //The projectile hit an other actor
 
       Character hitCharacter = hitActor.Character;
-
+      damage.Deal(hitCharacter.health, hitCharacter.resistanceManager.totalResistances);
 
       Destroy(gameObject);
-      
-      //hitActor.health
   
     }
     else {

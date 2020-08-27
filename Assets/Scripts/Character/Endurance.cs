@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Endurance{
+public class Endurance {
 
   public float max;
- 
+
   public float Current {
-    get { return Mathf.Clamp(current, 0, max); }
+    get
+    {
+      return Mathf.Clamp(current, 0, max);
+    }
     set
     {
       current = value;
@@ -18,9 +21,8 @@ public class Endurance{
 
   private float current;
 
-  public Endurance() {
-    Current = max;
-  }
+
+  #region Public Methods
 
   public float Drain(float amount) {
 
@@ -35,5 +37,7 @@ public class Endurance{
 
     return Current += amount * Time.deltaTime;
   }
+
+  #endregion
 }
 

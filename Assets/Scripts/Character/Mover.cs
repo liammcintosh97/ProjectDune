@@ -33,6 +33,7 @@ public class Mover : MonoBehaviour
 
   private void MoveCharacter(Vector2 input)
   {
+    gameManager.DebugWindow.Log("Current speed",character.characterSpeed.Current.ToString(),0);
     input *= character.characterSpeed.Current;
 
     Vector3 newVelocity = (transform.up * input);

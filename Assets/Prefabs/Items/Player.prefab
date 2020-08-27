@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 582969896881179274}
   - component: {fileID: 582969896881179285}
   - component: {fileID: 582969896881179272}
-  - component: {fileID: 3195576464458074368}
   - component: {fileID: 582969896881179273}
   - component: {fileID: 582969896881179286}
   m_Layer: 0
@@ -120,17 +119,18 @@ MonoBehaviour:
     walk: 1.5
     run: 3
   endurance:
+    Max: 100
+  health:
     max: 100
-  health: {fileID: 0}
-  resistances:
-    Piercing: 5
-    Blunt: 5
-    Ballistic: 5
-    Explosive: 5
-    Slashing: 5
-    Fire: 5
-    Acid: 5
-    Electric: 5
+  baseResistances:
+    Piercing: 0
+    Blunt: 0
+    Ballistic: 0
+    Explosive: 0
+    Slashing: 0
+    Fire: 0
+    Acid: 0
+    Electric: 0
 --- !u!114 &582969896881179272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,19 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 582969896881179285}
   rigidbody2D: {fileID: 582969896881179273}
---- !u!114 &3195576464458074368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582969896881179282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b61370c106eb36547b648e85979590b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max: 0
 --- !u!50 &582969896881179273
 Rigidbody2D:
   serializedVersion: 4

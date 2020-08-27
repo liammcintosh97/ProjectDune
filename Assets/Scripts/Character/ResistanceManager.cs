@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-  public class ResistanceManager
-{
+  public class ResistanceManager{
   public Resistances totalResistances = new Resistances();
 
   private List<Resistances> resistances = new List<Resistances>();
