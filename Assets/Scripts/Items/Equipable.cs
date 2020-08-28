@@ -6,9 +6,10 @@ public enum EquipableType { Null,RightHand,LeftHand,Hand,BothHands,Head,Face,Tor
 
 public abstract class Equipable : Item, IUsages
 {
+
   public EquipableType equipableType;
-  public abstract void Use(object o);
   public Resistances resistances;
+  public Skills requiredSkills;
 
   protected Usage UUse;
 
@@ -18,7 +19,8 @@ public abstract class Equipable : Item, IUsages
     SetUsages();
   }
 
-  
+  public abstract void Use(object o);
+
   public new void SetUsages()
   {
     string useString = "Use";

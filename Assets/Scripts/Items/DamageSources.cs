@@ -2,8 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageType { Piercing, Blunt, Ballistic, Explosive, Slashing, Fire, Acid, Electric }
+
 [System.Serializable]
-public class Resistances : Stats
+public class DamageSource
+{
+  public float value;
+  public DamageType type;
+
+  #region Consturctors
+  public DamageSource(DamageType t)
+  {
+    type = t;
+  }
+  #endregion
+}
+
+[System.Serializable]
+public class DamageSources: Stats
 {
   public DamageSource Piercing = new DamageSource(DamageType.Piercing);
   public DamageSource Blunt = new DamageSource(DamageType.Blunt);
@@ -18,10 +34,10 @@ public class Resistances : Stats
 
   private Dictionary<DamageType, DamageSource> _dictionary = new Dictionary<DamageType, DamageSource>();
 
-
   #region Init
 
-  protected override void InitStats(){
+  protected override void InitStats()
+  {
     _dictionary.Add(DamageType.Piercing, Piercing);
     _dictionary.Add(DamageType.Blunt, Blunt);
     _dictionary.Add(DamageType.Ballistic, Ballistic);
@@ -30,53 +46,26 @@ public class Resistances : Stats
     _dictionary.Add(DamageType.Fire, Fire);
     _dictionary.Add(DamageType.Acid, Acid);
     _dictionary.Add(DamageType.Electric, Electric);
+
   }
 
   #endregion
 
-  #region Public Static Methods
+  #region Public Methods
 
-  public static Resistances operator +(Resistances a, Resistances b){
-    Resistances sum = new Resistances();
+  public float CalculateTotalDamage(){
+    float total = 0;
 
-    Dictionary<DamageType, DamageSource>.KeyCollection keys = a.Dictionary.Keys;
-
-    foreach (DamageType rt in keys) {
-
-      float newValue = a.Dictionary[rt].value + b.Dictionary[rt].value;
-      sum.Dictionary[rt].value = Mathf.Clamp(newValue, minStat, maxStat);
+    foreach (DamageSource dt in _dictionary.Values) {
+      total += dt.value;
     }
 
-    return sum;
-  }
-
-  public static Resistances operator -(Resistances a, Resistances b){
-    Resistances sum = new Resistances();
-
-    Dictionary<DamageType, DamageSource>.KeyCollection keys = a.Dictionary.Keys;
-
-    foreach (DamageType rt in keys){
-      float newValue = a.Dictionary[rt].value - b.Dictionary[rt].value;
-      sum.Dictionary[rt].value = Mathf.Clamp(newValue, minStat, maxStat);
-    }
-
-    return sum;
-  }
-
-  public DamageSources FilterDamage(DamageSources toFilter) {
-
-    Dictionary<DamageType, DamageSource>.KeyCollection keys = toFilter.Dictionary.Keys;
-
-    foreach (DamageType rt in keys) {
-      toFilter.Dictionary[rt].value -= (_dictionary[rt].value / 100) * toFilter.Dictionary[rt].value;
-    }
-
-    return toFilter;
+    return total;
   }
 
   public override void Randomize() {
-
-    foreach (DamageSource r in _dictionary.Values){
+    foreach (DamageSource r in _dictionary.Values)
+    {
       r.value = Random.Range(minStat, maxStat);
     }
 
@@ -84,3 +73,4 @@ public class Resistances : Stats
 
   #endregion
 }
+

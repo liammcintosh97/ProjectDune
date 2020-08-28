@@ -10,8 +10,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-  public CharacterStats characterStats = new CharacterStats();
-  public CharacterSkills characterSkills = new CharacterSkills();
+  public Atributes characterStats = new Atributes();
+  public Skills characterSkills = new Skills();
   public CharacterSpeed characterSpeed =  new CharacterSpeed();
   public Endurance endurance = new Endurance();
   public Health health = new Health();
